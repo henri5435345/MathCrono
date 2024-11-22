@@ -7,177 +7,116 @@ body {
     color: #333;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Aligne tout en bas */
+    align-items: center;
     min-height: 100vh;
     overflow: hidden;
 }
 
-/* Conteneur principal (inversé) */
+/* Conteneur principal */
 .container {
-    display: flex;
-    flex-direction: column-reverse; /* Inverse l'ordre des éléments */
-    align-items: center;
-    gap: 20px; /* Espacement entre les éléments */
+    display: grid;
+    grid-template-areas:
+        "title title"
+        "timer timer"
+        "input buttons"
+        "questions questions"
+        "result result";
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
     background: #ffffff;
+    padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    max-width: 600px;
-    width: 100%;
-    padding: 30px 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 900px;
     text-align: center;
-    background-image: url('https://www.example.com/background-pattern.png');
-    background-size: cover;
-    background-position: center;
-    animation: fadeIn 1s ease forwards;
 }
 
 /* Titre principal */
 h1 {
+    grid-area: title;
     font-size: 2.5em;
-    margin-bottom: 15px;
     color: #1e88e5;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
 }
 
 /* Chronomètre */
 #timer {
+    grid-area: timer;
     font-size: 1.3em;
-    margin-bottom: 20px;
     color: #ff5722;
     font-weight: bold;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    animation: pulse 1.5s ease-in-out infinite;
 }
 
-/* Conteneur des questions */
+/* Zone d'entrée */
+#nombre-question-text {
+    grid-area: input;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* Questions */
 #questions-container {
+    grid-area: questions;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 100%;
-    max-width: 500px;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-/* Style de chaque question */
-#questions-container div {
-    background: #f7f9fc;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
-}
-#questions-container div:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    background-color: #e1f5fe;
-}
-
-/* Champs de saisie */
-input[type="number"] {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.1em;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-top: 10px;
-    box-sizing: border-box;
-    background: #fafafa;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-input[type="number"]:focus {
-    outline: none;
-    border-color: #42a5f5;
-    box-shadow: 0 0 8px rgba(66, 165, 245, 0.5);
-    background: #ffffff;
-}
-
-/* Conteneur des boutons */
-.button-container {
-    display: flex;
-    flex-direction: row; /* Aligne les boutons côte à côte */
-    gap: 10px; /* Espacement entre les boutons */
-    justify-content: center;
     margin-top: 20px;
 }
 
-/* Bouton principal */
+/* Résultat */
+#result {
+    grid-area: result;
+    font-size: 1.5em;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+/* Boutons */
 button {
     background: #42a5f5;
     color: #fff;
     border: none;
     padding: 15px 30px;
-    font-size: 1.2em;
-    border-radius: 12px;
+    font-size: 1.1em;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    width: 100%;
-    max-width: 150px; /* Taille réduite pour alignement côte à côte */
+    transition: all 0.3s ease;
 }
 button:hover {
     background: #1e88e5;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(30, 136, 229, 0.4);
+    transform: translateY(-2px);
 }
 button:active {
     transform: translateY(0);
-    box-shadow: none;
 }
 
-/* Résultats */
-#result {
-    font-size: 1.5em;
-    color: #4caf50;
-    font-weight: bold;
-    margin-top: 30px;
-    text-align: center;
-}
-
-/* Animation d'apparition */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Animation de changement de couleur au survol */
-.container:hover {
-    background: rgba(255, 255, 255, 0.9);
-}
-
-/* Ombre d'arrière-plan */
-body:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2));
-    z-index: -1;
-    opacity: 0.6;
+/* Conteneur des boutons */
+#mode-rapide-btn, #mode-classique-btn {
+    grid-area: buttons;
+    display: inline-block;
+    width: 100%;
+    margin: 5px 0;
 }
 
 /* Responsiveness */
 @media (max-width: 768px) {
     .container {
-        padding: 20px;
-    }
-    h1 {
-        font-size: 2em;
-    }
-    #questions-container {
-        width: 90%;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "title"
+            "timer"
+            "input"
+            "buttons"
+            "questions"
+            "result";
     }
     button {
-        max-width: 130px; /* Taille réduite sur petits écrans */
+        font-size: 1em;
+        padding: 10px 20px;
     }
 }
