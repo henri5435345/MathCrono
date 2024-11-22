@@ -1,7 +1,6 @@
 /* Style général */
 body {
     font-family: 'Roboto', Arial, sans-serif;
-    line-height: 1.6;
     margin: 0;
     padding: 0;
     background: linear-gradient(135deg, #e3f2fd, #90caf9);
@@ -15,38 +14,38 @@ body {
 
 /* Conteneur principal */
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Espacement entre les éléments */
     background: #ffffff;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     max-width: 600px;
-    width: 90%; /* Prend 90% de la largeur de l'écran pour les petits écrans */
-    padding: 30px;
-    margin: auto;
+    width: 100%;
+    padding: 30px 20px;
     text-align: center;
+    background-image: url('https://www.example.com/background-pattern.png');
+    background-size: cover;
+    background-position: center;
     animation: fadeIn 1s ease forwards;
-    overflow: hidden;
-    position: relative;
 }
 
 /* Titre principal */
 h1 {
     font-size: 2.5em;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #1e88e5;
     text-transform: uppercase;
     letter-spacing: 3px;
     text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
-    transition: color 0.3s ease;
-}
-
-h1:hover {
-    color: #0d47a1; /* Couleur bleu foncé au survol */
 }
 
 /* Chronomètre */
 #timer {
     font-size: 1.3em;
-    margin-top: 20px;
+    margin-bottom: 20px;
     color: #ff5722;
     font-weight: bold;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
@@ -62,11 +61,13 @@ h1:hover {
 
 /* Conteneur des questions */
 #questions-container {
-    margin: 20px 0;
-    text-align: left;
     display: flex;
-    flex-direction: column; /* Empile les questions verticalement */
-    gap: 15px; /* Ajoute un espacement entre chaque question */
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 /* Style de chaque question */
@@ -78,17 +79,9 @@ h1:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
-
 #questions-container div:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     background-color: #e1f5fe;
-}
-
-/* Texte des questions */
-#questions-container p {
-    margin: 0;
-    font-size: 1.2em;
-    color: #424242;
 }
 
 /* Champs de saisie */
@@ -100,10 +93,9 @@ input[type="number"] {
     border-radius: 8px;
     margin-top: 10px;
     box-sizing: border-box;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     background: #fafafa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
 input[type="number"]:focus {
     outline: none;
     border-color: #42a5f5;
@@ -111,31 +103,27 @@ input[type="number"]:focus {
     background: #ffffff;
 }
 
-/* Bouton terminer */
+/* Bouton principal */
 button {
     background: #42a5f5;
     color: #fff;
     border: none;
     padding: 15px 30px;
     font-size: 1.2em;
-    font-weight: bold;
     border-radius: 12px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     display: block;
-    margin: 25px auto;
-    max-width: 250px;
+    margin-top: 20px;
     width: 100%;
-    position: relative;
-    overflow: hidden;
+    max-width: 200px;
+    align-self: center; /* Centre les boutons */
 }
-
 button:hover {
     background: #1e88e5;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(66, 165, 245, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(30, 136, 229, 0.4);
 }
-
 button:active {
     transform: translateY(0);
     box-shadow: none;
@@ -143,12 +131,11 @@ button:active {
 
 /* Résultats */
 #result {
-    margin-top: 30px;
     font-size: 1.5em;
     color: #4caf50;
     font-weight: bold;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    transition: color 0.3s ease;
+    margin-top: 30px;
+    text-align: center;
 }
 
 /* Animation d'apparition */
@@ -163,26 +150,36 @@ button:active {
     }
 }
 
-.container, #questions-container div, button {
-    animation: fadeIn 0.8s ease forwards;
+/* Animation de changement de couleur au survol */
+.container:hover {
+    background: rgba(255, 255, 255, 0.9);
 }
 
-/* Media queries pour écrans plus petits */
-@media screen and (max-width: 768px) {
+/* Ombre d'arrière-plan */
+body:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2));
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
     h1 {
         font-size: 2em;
     }
-
+    #questions-container {
+        width: 90%;
+    }
     button {
-        font-size: 1em;
-        padding: 12px 20px;
-    }
-
-    #timer {
-        font-size: 1.1em;
-    }
-
-    input[type="number"] {
-        font-size: 1em;
+        max-width: 180px;
     }
 }
