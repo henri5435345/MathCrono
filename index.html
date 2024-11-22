@@ -1,21 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Mathématique</title>
+    <link rel="stylesheet" href="style.css"> <!-- Lien vers le fichier CSS -->
+</head>
 <body>
-    <div class="container">
-        <h1>Quiz Mathématique</h1>
 
-        <div id="timer">00:00</div>
+    <h1>Quiz Mathématique</h1>
 
-        <div id="nombre-question-text">
-            <label for="nombre-question">Entrez le nombre de questions :</label>
-            <input type="number" id="nombre-question" min="1">
-        </div>
-        
-        <div id="questions-container"></div>
-
-        <div id="result"></div>
-        
-        <button id="mode-rapide-btn" onclick="startRapidMode()">Mode Rapide</button>
-        <button id="mode-classique-btn" onclick="startClassicMode()">Mode Classique</button>
+    <div id="nombre-question-text">
+        <label for="nombre-question">Entrez le nombre de questions :</label>
+        <input type="number" id="nombre-question" min="1">
     </div>
+    
+    <div id="questions-container"></div>
+    
+    <div id="timer"></div>
+    
+    <div id="result"></div>
+    
+    <button id="restart-btn" onclick="restartQuiz()" style="display: none;">Recommencer</button>
+
+    <!-- Bouton Mode Rapide -->
+    <button id="mode-rapide-btn" onclick="startRapidMode()">Mode Rapide</button>
+
+    <!-- Bouton Mode Classique -->
+    <button id="mode-classique-btn" onclick="startClassicMode()">Mode Classique</button>
 
     <script src="script.js"></script> <!-- Lien vers le script JavaScript -->
 </body>
+</html>
